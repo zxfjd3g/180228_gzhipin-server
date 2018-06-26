@@ -13,7 +13,8 @@ module.exports = function (server) {
         from,
         to,
         content,
-        chat_id: from + '_' + to,
+        // chat_id: from + '_' + to,   // a_b  b_a
+        chat_id: [from, to].sort().join('_'), // 聊天的id
         create_time: Date.now()
       }
       new ChatModel(chat).save(function (error, chatMsg) {
